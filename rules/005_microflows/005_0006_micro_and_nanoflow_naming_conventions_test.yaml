@@ -1,0 +1,36 @@
+1. TestCases:
+2. - name: allow Microflow with PascalCase name
+3.   allow: true
+4.   input:
+5.     $Type: Microflows$Microflow
+6.     Name: Core.Account_Create
+7.
+8. - name: allow Nanoflow with PascalCase name
+9.   allow: true
+10.   input:
+11.     $Type: Nanoflows$Nanoflow
+12.     Name: MyModule.DoSomething
+13.
+14. - name: disallow microflow with spaces and lowercase start
+15.   allow: false
+16.   input:
+17.     $Type: Microflows$Microflow
+18.     Name: my microflow
+19.
+20. - name: disallow nanoflow with special characters
+21.   allow: false
+22.   input:
+23.     $Type: Nanoflows$Nanoflow
+24.     Name: Invalid-Name!
+25.
+26. - name: disallow microflow starting with number
+27.   allow: false
+28.   input:
+29.     $Type: Microflows$Microflow
+30.     Name: 1StartWithNumber
+31.
+32. - name: allow microflow with underscores and dot prefix
+33.   allow: true
+34.   input:
+35.     $Type: Microflows$Microflow
+36.     Name: Module_Sub.Part_Create
