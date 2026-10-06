@@ -54,6 +54,74 @@ Each rule comes with its own `_test` file, which contains test data and one or m
 For more information, see the installation instructions on the [MxLint website](https://mxlint.com/mendix-studio-pro-extension/installation/).
 
 
+## Rules
+All rules in this repository. Most have a `_test.yaml` (or `_test.rego`) next to them; 001_0007, 001_0008, 005_0001, 005_0003, 005_0004, 005_0005 and 006_0002 do not have a `_test.yaml` yet. Marketplace modules are excluded by the export (`export.appstore: false`), so rules only apply to your own modules.
+
+| Rule | Severity | What it checks |
+|------|----------|----------------|
+| 001_0001 | HIGH | Anonymous (guest) access is disabled |
+| 001_0002 | HIGH | Demo users are disabled |
+| 001_0003 | HIGH | Security checks are active |
+| 001_0004 | HIGH | Strong password policy |
+| 001_0005 | HIGH | Admin user id is not `MxAdmin` |
+| 001_0007 | HIGH | Hash algorithm is BCrypt or SSHA256 |
+| 001_0008 | HIGH | Security is checked on every user role |
+| 001_0009 | HIGH | Strict mode is enabled when using the React client |
+| 001_0010 | MEDIUM | Strict page URL check is enabled |
+| 002_0001 | MEDIUM | At most 15 persistent entities per domain model |
+| 002_0002 | MEDIUM | At most 35 attributes per entity |
+| 002_0003 | MEDIUM | Do not inherit from Administration.Account |
+| 002_0004 | MEDIUM | Avoid inheriting from non-System modules |
+| 002_0005 | HIGH | Avoid associations to System entities |
+| 002_0006 | MEDIUM | Avoid too many calculated (microflow) attributes |
+| 002_0007 | MEDIUM | Avoid validation rules in the domain model |
+| 002_0008 | MEDIUM | Avoid default ReadWrite access rules |
+| 002_0009 | LOW | No default values on attributes |
+| 002_0010 | LOW | Entity names are PascalCase |
+| 002_0011 | LOW | Attribute names are PascalCase |
+| 002_0012 | LOW | No unlimited string attributes on persistent entities |
+| 002_0013 | LOW | Persistent entities are documented |
+| 002_0014 | HIGH | Password attributes use HashedString |
+| 003_0001 | MEDIUM | At most 20 modules in the project |
+| 003_0002 | LOW | Module names are PascalCase |
+| 004_0001 | MEDIUM | No inline style property on pages/snippets |
+| 004_0002 | MEDIUM | Images have alt text |
+| 004_0003 | HIGH | Only one h1 per page |
+| 004_0004 | HIGH | Headings are in ascending order |
+| 004_0005 | LOW | Page naming convention |
+| 004_0006 | LOW | Pages have a title |
+| 004_0007 | MEDIUM | Pages are accessible to at least one module role |
+| 005_0001 | MEDIUM | Empty string checks are complete |
+| 005_0002 | MEDIUM | No commits inside loops |
+| 005_0003 | MEDIUM | At most 25 elements per microflow |
+| 005_0004 | MEDIUM | Complex microflows have annotations |
+| 005_0005 | MEDIUM | No nested if-statements in split expressions |
+| 005_0007 | LOW | Microflow names use a standard event prefix |
+| 005_0008 | MEDIUM | REST/web service calls have custom error handling |
+| 005_0009 | HIGH | No hard-coded secrets in microflows/nanoflows |
+| 005_0010 | MEDIUM | No hard-coded URLs in microflows/nanoflows |
+| 005_0011 | LOW | No disabled activities left in flows |
+| 005_0012 | MEDIUM | No unconstrained "retrieve all" from the database |
+| 005_0013 | LOW | At most 5 parameters per flow |
+| 006_0001 | HIGH | Constants with sensitive data are not exposed to the client |
+| 006_0002 | HIGH | Admin password is not blank |
+| 006_0003 | HIGH | Sensitive constants have no default value |
+| 006_0004 | HIGH | Published REST services require authentication |
+| 006_0005 | HIGH | Admin password satisfies the password policy |
+| 006_0006 | HIGH | No secrets in the project's shared configuration values |
+| 006_0007 | HIGH | No database credentials in the project configuration |
+| 007_0001 | LOW | Enumeration names use `ENUM_` |
+| 007_0002 | LOW | Layout names use a standard prefix |
+| 007_0003 | LOW | Snippet names use `SNIP_` |
+| 007_0004 | LOW | Nanoflow naming convention |
+| 007_0005 | LOW | Scheduled event naming convention (`SCE_`) |
+| 007_0006 | LOW | Published REST service naming convention (`PRS_`) |
+| 008_0001 | LOW | Constants are documented |
+| 008_0002 | LOW | Scheduled events are documented |
+| 008_0003 | LOW | Published REST services are documented |
+
+To accept a finding for one document (for example an OAuth callback service that is intentionally unauthenticated), add `#noqa:006_0004 reason` to that document's documentation.
+
 <!-- ROADMAP -->
 ## Roadmap
 

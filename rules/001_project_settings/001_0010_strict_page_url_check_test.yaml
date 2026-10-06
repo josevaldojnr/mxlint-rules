@@ -1,0 +1,9 @@
+TestCases:
+- name: allow strict page url check enabled
+  allow: true
+  input:
+    StrictPageUrlCheck: true
+- name: do not allow strict page url check disabled
+  allow: false
+  input:
+    StrictPageUrlCheck: false

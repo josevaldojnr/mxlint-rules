@@ -1,0 +1,35 @@
+TestCases:
+- name: allow documented persistent entity
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+        Documentation: A customer of the company.
+        MaybeGeneralization:
+          Persistable: true
+- name: allow undocumented non-persistent entity
+  allow: true
+  input:
+    Entities:
+      - Name: SearchHelper
+        Documentation: ""
+        MaybeGeneralization:
+          Persistable: false
+- name: allow no entities
+  allow: true
+  input:
+    Entities: null
+- name: do not allow undocumented persistent entity
+  allow: false
+  input:
+    Entities:
+      - Name: Customer
+        Documentation: ""
+        MaybeGeneralization:
+          Persistable: true
+- name: do not allow whitespace only documentation
+  allow: false
+  input:
+    Entities:
+      - Name: Customer
+        Documentation: "   "

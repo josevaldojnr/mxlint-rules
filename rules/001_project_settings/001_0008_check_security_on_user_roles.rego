@@ -10,7 +10,7 @@
 #  severity: HIGH
 #  rulenumber: "001_0008"
 #  remediation: Check security for all user roles
-#  input: "Security$ProjectSecurity.yaml"
+#  input: .*Security\$ProjectSecurity\.yaml
 package app.mendix.project_settings.check_security_on_user_roles
 
 import rego.v1

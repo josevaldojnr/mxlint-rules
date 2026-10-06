@@ -1,0 +1,33 @@
+TestCases:
+- name: allow no modules
+  allow: true
+  input:
+    Modules: null
+- name: allow PascalCase module
+  allow: true
+  input:
+    Modules:
+      - Name: CustomerManagement
+        Attributes:
+          FromAppStore: false
+- name: allow marketplace module with nonstandard casing
+  allow: true
+  input:
+    Modules:
+      - Name: some_marketplace_module
+        Attributes:
+          FromAppStore: true
+- name: do not allow lowercase start
+  allow: false
+  input:
+    Modules:
+      - Name: customerManagement
+        Attributes:
+          FromAppStore: false
+- name: do not allow underscore in name
+  allow: false
+  input:
+    Modules:
+      - Name: Customer_Management
+        Attributes:
+          FromAppStore: false

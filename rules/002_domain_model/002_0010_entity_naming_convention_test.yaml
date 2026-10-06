@@ -1,0 +1,20 @@
+TestCases:
+- name: allow no entities
+  allow: true
+  input:
+    Entities: null
+- name: allow PascalCase entity
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+- name: do not allow lowercase start
+  allow: false
+  input:
+    Entities:
+      - Name: customer
+- name: do not allow underscore in name
+  allow: false
+  input:
+    Entities:
+      - Name: Customer_Record

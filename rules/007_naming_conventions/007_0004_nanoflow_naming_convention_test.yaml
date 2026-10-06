@@ -1,0 +1,21 @@
+TestCases:
+- name: allow action nanoflow
+  allow: true
+  input:
+    Name: ACT_Customer_Save
+- name: allow data source nanoflow
+  allow: true
+  input:
+    Name: DS_Customer
+- name: do not allow missing prefix
+  allow: false
+  input:
+    Name: SaveCustomer
+- name: do not allow unknown prefix
+  allow: false
+  input:
+    Name: XYZ_Customer
+- name: do not allow lowercase after prefix
+  allow: false
+  input:
+    Name: ACT_customer

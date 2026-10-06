@@ -1,0 +1,37 @@
+TestCases:
+- name: allow enabled activities
+  allow: true
+  input:
+    Name: ACT_Enabled
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Caption: Commit
+          Disabled: false
+- name: allow microflow without objects
+  allow: true
+  input:
+    Name: ACT_Empty
+    ObjectCollection:
+      Objects: []
+- name: do not allow disabled activity
+  allow: false
+  input:
+    Name: ACT_Disabled
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Caption: Commit
+          Disabled: true
+- name: do not allow disabled activity inside a loop
+  allow: false
+  input:
+    Name: ACT_DisabledInLoop
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
+          ObjectCollection:
+            Objects:
+              - $Type: Microflows$ActionActivity
+                Caption: Log
+                Disabled: true

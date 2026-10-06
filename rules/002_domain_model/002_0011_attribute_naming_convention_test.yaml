@@ -1,0 +1,33 @@
+TestCases:
+- name: allow no entities
+  allow: true
+  input:
+    Entities: null
+- name: allow PascalCase attribute
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+        Attributes:
+          - Name: FirstName
+- name: allow underscore-prefixed technical attribute
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+        Attributes:
+          - Name: _SyncHash
+- name: do not allow lowercase start
+  allow: false
+  input:
+    Entities:
+      - Name: Customer
+        Attributes:
+          - Name: firstName
+- name: do not allow underscore inside name
+  allow: false
+  input:
+    Entities:
+      - Name: Customer
+        Attributes:
+          - Name: First_Name

@@ -1,0 +1,16 @@
+TestCases:
+- name: allow page with allowed roles
+  allow: true
+  input:
+    Name: Customer_Overview
+    AllowedModuleRoles:
+      - MyFirstModule.User
+- name: do not allow page with empty roles
+  allow: false
+  input:
+    Name: Customer_Overview
+    AllowedModuleRoles: []
+- name: do not allow page with missing roles
+  allow: false
+  input:
+    Name: Customer_Overview

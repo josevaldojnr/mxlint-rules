@@ -10,7 +10,7 @@
 #  severity: HIGH
 #  rulenumber: "006_0002"
 #  remediation: Set a strong admin password and remove any default or empty credentials.
-#  input: Security$ProjectSecurity.yaml
+#  input: .*Security\$ProjectSecurity\.yaml
 package app.mendix.project_settings.admin_password_not_blank
 
 import rego.v1

@@ -10,7 +10,7 @@
 #  severity: MEDIUM
 #  rulenumber: "005_0005"
 #  remediation: Simplify the expression or use exclusive splits.
-#  input: "**/*$Microflow.yaml"
+#  input: .*\$Microflow\.yaml
 package app.mendix.microflows.nested_if_statements
 
 import rego.v1

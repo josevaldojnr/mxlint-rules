@@ -1,0 +1,11 @@
+TestCases:
+- name: allow documented service
+  allow: true
+  input:
+    Name: PRS_Orders
+    Documentation: Order API used by the warehouse system. Owner is the logistics team.
+- name: do not allow empty documentation
+  allow: false
+  input:
+    Name: PRS_Orders
+    Documentation: ""

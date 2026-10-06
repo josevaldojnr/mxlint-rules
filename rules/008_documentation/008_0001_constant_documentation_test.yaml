@@ -1,0 +1,15 @@
+TestCases:
+- name: allow documented constant
+  allow: true
+  input:
+    Name: BaseUrl
+    Documentation: Base URL of the customer API, set per environment.
+- name: do not allow empty documentation
+  allow: false
+  input:
+    Name: BaseUrl
+    Documentation: ""
+- name: do not allow missing documentation
+  allow: false
+  input:
+    Name: BaseUrl

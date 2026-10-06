@@ -23,12 +23,11 @@ allow if count(errors) == 0
 
 errors contains error if {
 	name := input.Name
-	main_function := input.MainFunction
 
-	some attr in main_function
-	attr.Attributes["$Type"] == "Microflows$LoopedActivity"
-	some commit_action in attr.Attributes.ObjectCollection.Objects
-	commit_action.Action["$Type"] == "Microflows$CommitAction"
+	walk(input.ObjectCollection, [_, loop])
+	loop["$Type"] == "Microflows$LoopedActivity"
+	walk(loop.ObjectCollection, [_, action])
+	action["$Type"] == "Microflows$CommitAction"
 
 	error := sprintf(
 		"[%v, %v, %v] Commit actions inside %v loop",
@@ -43,12 +42,12 @@ errors contains error if {
 
 errors contains error if {
 	name := input.Name
-	main_function := input.MainFunction
-	some attr in main_function
-	attr.Attributes["$Type"] == "Microflows$LoopedActivity"
-	some change_action in attr.Attributes.ObjectCollection.Objects
-	change_action.Action["$Type"] == "Microflows$ChangeAction"
-	change_action.Action.Commit == "Yes"
+
+	walk(input.ObjectCollection, [_, loop])
+	loop["$Type"] == "Microflows$LoopedActivity"
+	walk(loop.ObjectCollection, [_, action])
+	action["$Type"] in {"Microflows$ChangeAction", "Microflows$CreateChangeAction"}
+	action.Commit in {"Yes", "YesWithoutEvents"}
 
 	error := sprintf(
 		"[%v, %v, %v] Commit set to Yes for Change actions inside %v loop",

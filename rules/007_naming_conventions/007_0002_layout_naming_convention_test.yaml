@@ -1,0 +1,13 @@
+TestCases:
+- name: allow Responsive_ prefix
+  allow: true
+  input:
+    Name: Responsive_Main
+- name: allow Atlas_ prefix
+  allow: true
+  input:
+    Name: Atlas_Default
+- name: do not allow missing prefix
+  allow: false
+  input:
+    Name: MainLayout

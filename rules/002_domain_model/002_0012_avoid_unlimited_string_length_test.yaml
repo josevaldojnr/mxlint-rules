@@ -1,0 +1,61 @@
+TestCases:
+- name: allow limited string
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+        MaybeGeneralization:
+          Persistable: true
+        Attributes:
+          - Name: Name
+            NewType:
+              $Type: DomainModels$StringAttributeType
+              Length: 200
+            Value:
+              $Type: DomainModels$StoredValue
+- name: allow unlimited string on non-persistent entity
+  allow: true
+  input:
+    Entities:
+      - Name: SearchHelper
+        MaybeGeneralization:
+          Persistable: false
+        Attributes:
+          - Name: Query
+            NewType:
+              $Type: DomainModels$StringAttributeType
+              Length: 0
+            Value:
+              $Type: DomainModels$StoredValue
+- name: allow unlimited calculated string
+  allow: true
+  input:
+    Entities:
+      - Name: Customer
+        MaybeGeneralization:
+          Persistable: true
+        Attributes:
+          - Name: Summary
+            NewType:
+              $Type: DomainModels$StringAttributeType
+              Length: 0
+            Value:
+              $Type: DomainModels$MicroflowValue
+- name: allow no entities
+  allow: true
+  input:
+    Entities: null
+- name: do not allow unlimited string on persistent entity
+  allow: false
+  input:
+    Entities:
+      - Name: Customer
+        MaybeGeneralization:
+          Persistable: true
+        Attributes:
+          - Name: Notes
+            NewType:
+              $Type: DomainModels$StringAttributeType
+              Length: 0
+            Value:
+              $Type: DomainModels$StoredValue

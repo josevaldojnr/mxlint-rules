@@ -1,0 +1,23 @@
+TestCases:
+- name: allow service with microflow authentication
+  allow: true
+  input:
+    Name: PRS_Event
+    AuthenticationTypes:
+      - Microflow
+- name: allow service with basic and session authentication
+  allow: true
+  input:
+    Name: PRS_Orders
+    AuthenticationTypes:
+      - Basic
+      - Session
+- name: do not allow service without authentication
+  allow: false
+  input:
+    Name: OAuthHandler
+    AuthenticationTypes: []
+- name: do not allow service with missing authentication types
+  allow: false
+  input:
+    Name: OAuthHandler

@@ -1,0 +1,13 @@
+TestCases:
+- name: allow SNIP_ prefixed name
+  allow: true
+  input:
+    Name: SNIP_CustomerHeader
+- name: do not allow missing prefix
+  allow: false
+  input:
+    Name: CustomerHeader
+- name: do not allow lowercase after prefix
+  allow: false
+  input:
+    Name: SNIP_customerHeader

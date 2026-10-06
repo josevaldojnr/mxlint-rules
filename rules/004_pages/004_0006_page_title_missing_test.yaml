@@ -1,0 +1,38 @@
+TestCases:
+- name: allow page with title
+  allow: true
+  input:
+    Name: Customer_Overview
+    Title:
+      $Type: Texts$Text
+      Items:
+        - $Type: Texts$Translation
+          LanguageCode: en_US
+          Text: Customers
+- name: allow page with one translated title
+  allow: true
+  input:
+    Name: Customer_Overview
+    Title:
+      $Type: Texts$Text
+      Items:
+        - $Type: Texts$Translation
+          LanguageCode: en_US
+          Text: ""
+        - $Type: Texts$Translation
+          LanguageCode: pt_BR
+          Text: Clientes
+- name: do not allow empty title
+  allow: false
+  input:
+    Name: Customer_Overview
+    Title:
+      $Type: Texts$Text
+      Items:
+        - $Type: Texts$Translation
+          LanguageCode: en_US
+          Text: ""
+- name: do not allow missing title
+  allow: false
+  input:
+    Name: Customer_Overview

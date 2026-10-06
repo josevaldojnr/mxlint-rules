@@ -1,0 +1,64 @@
+TestCases:
+- name: allow rest call with custom error handling
+  allow: true
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            ErrorHandlingType: CustomWithoutRollBack
+- name: allow rest call with custom rollback error handling
+  allow: true
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            ErrorHandlingType: CustomWithRollback
+- name: allow microflow without external calls
+  allow: true
+  input:
+    Name: ACT_NoCalls
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$CommitAction
+            ErrorHandlingType: Rollback
+- name: do not allow rest call with default rollback handling
+  allow: false
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            ErrorHandlingType: Rollback
+- name: do not allow rest call inside a loop with abort handling
+  allow: false
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
+          ObjectCollection:
+            Objects:
+              - $Type: Microflows$ActionActivity
+                Action:
+                  $Type: Microflows$RestCallAction
+                  ErrorHandlingType: Abort
+- name: do not allow web service call without error handling
+  allow: false
+  input:
+    Name: ACT_CallSoap
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$WebServiceCallAction
+            ErrorHandlingType: Abort

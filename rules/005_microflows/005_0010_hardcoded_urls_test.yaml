@@ -1,0 +1,71 @@
+TestCases:
+- name: allow url built from a constant
+  allow: true
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            HttpConfiguration:
+              $Type: Microflows$HttpConfiguration
+              CustomLocation: ""
+              CustomLocationTemplate:
+                $Type: Microflows$StringTemplate
+                Text: "{1}/claims"
+- name: allow expression without url literal
+  allow: true
+  input:
+    Name: ACT_Expression
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$CreateVariableAction
+            InitialValue: "$Constants/BaseUrl + '/claims'"
+- name: allow url mentioned in documentation
+  allow: true
+  input:
+    Name: ACT_Documented
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Documentation: "See https://example.com/docs"
+- name: do not allow hard-coded rest location template
+  allow: false
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            HttpConfiguration:
+              $Type: Microflows$HttpConfiguration
+              CustomLocation: ""
+              CustomLocationTemplate:
+                $Type: Microflows$StringTemplate
+                Text: "https://api.example.com/claims"
+- name: do not allow hard-coded rest custom location
+  allow: false
+  input:
+    Name: ACT_CallApi
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RestCallAction
+            HttpConfiguration:
+              $Type: Microflows$HttpConfiguration
+              CustomLocation: "http://api.example.com/claims"
+- name: do not allow url literal in expression
+  allow: false
+  input:
+    Name: ACT_Expression
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$CreateVariableAction
+            InitialValue: "'https://api.example.com/claims'"

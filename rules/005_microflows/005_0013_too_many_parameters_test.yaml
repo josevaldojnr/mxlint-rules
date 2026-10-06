@@ -1,0 +1,46 @@
+TestCases:
+- name: allow microflow with few parameters
+  allow: true
+  input:
+    Name: ACT_Few
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$StartEvent
+        - $Type: Microflows$MicroflowParameter
+          Name: A
+        - $Type: Microflows$MicroflowParameter
+          Name: B
+- name: allow microflow with exactly five parameters
+  allow: true
+  input:
+    Name: ACT_Five
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$MicroflowParameter
+          Name: A
+        - $Type: Microflows$MicroflowParameter
+          Name: B
+        - $Type: Microflows$MicroflowParameter
+          Name: C
+        - $Type: Microflows$MicroflowParameter
+          Name: D
+        - $Type: Microflows$MicroflowParameter
+          Name: E
+- name: do not allow microflow with six parameters
+  allow: false
+  input:
+    Name: ACT_Six
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$MicroflowParameter
+          Name: A
+        - $Type: Microflows$MicroflowParameter
+          Name: B
+        - $Type: Microflows$MicroflowParameter
+          Name: C
+        - $Type: Microflows$MicroflowParameter
+          Name: D
+        - $Type: Microflows$MicroflowParameter
+          Name: E
+        - $Type: Microflows$MicroflowParameter
+          Name: F

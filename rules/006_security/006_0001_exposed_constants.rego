@@ -10,7 +10,7 @@
 #  severity: HIGH
 #  rulenumber: "006_0001"
 #  remediation: Set constant's 'Exposed to client' setting to false.
-#  input: "**/*$Constant.yaml"
+#  input: .*Constants\$Constant\.yaml
 package app.mendix.constants.exposed_constants
 
 import rego.v1

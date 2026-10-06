@@ -1,0 +1,29 @@
+TestCases:
+- name: do not allow name without standard prefix
+  allow: false
+  input:
+    Name: CalculateTotalAmount
+- name: do not allow mixed-case prefix
+  allow: false
+  input:
+    Name: Aloha_A
+- name: allow standard prefix with PascalCase remainder
+  allow: true
+  input:
+    Name: ACT_Vendor_StartWorkflow
+- name: allow SUB prefix
+  allow: true
+  input:
+    Name: SUB_CalculateDiscount
+- name: do not allow nonstandard prefix
+  allow: false
+  input:
+    Name: XYZ_Vendor_Start
+- name: do not allow standard prefix with non-PascalCase remainder
+  allow: false
+  input:
+    Name: ACT_vendor_start
+- name: do not allow standard prefix with empty remainder
+  allow: false
+  input:
+    Name: ACT_

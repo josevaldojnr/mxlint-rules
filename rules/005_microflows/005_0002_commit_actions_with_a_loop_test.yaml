@@ -1,78 +1,55 @@
 TestCases:
-- name: allow loop without objects
+- name: allow commit outside loop
   allow: true
   input:
-    $Type: Microflow$Microflow
-    Name: MicroflowForLoop
-    MainFunction:
-      - Attributes:
-          $Type: Microflows$LoopedActivity
+    Name: ACT_CommitAfterLoop
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
           ObjectCollection:
-            $Type: Microflows$MicroflowObjectCollection
-            Objects: null
-
-- name: allow loop with change action without commit
-  allow: true
-  input:
-    $Type: Microflow$Microflow
-    Name: MicroflowForLoop
-    MainFunction:
-      - Attributes:
-          $Type: Microflows$LoopedActivity
-          ObjectCollection:
-            $Type: Microflows$MicroflowObjectCollection
             Objects:
               - $Type: Microflows$ActionActivity
                 Action:
                   $Type: Microflows$ChangeAction
                   Commit: "No"
-
-- name: do not allow loop with commit action
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$CommitAction
+- name: do not allow commit action in loop
   allow: false
   input:
-    $Type: Microflow$Microflow
-    Name: MicroflowForLoop
-    MainFunction:
-      - Attributes:
-          $Type: Microflows$LoopedActivity
+    Name: ACT_CommitInLoop
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
           ObjectCollection:
-            $Type: Microflows$MicroflowObjectCollection
             Objects:
               - $Type: Microflows$ActionActivity
                 Action:
                   $Type: Microflows$CommitAction
-
-- name: do not allow loop with change action with commit
+- name: do not allow change with commit in loop
   allow: false
   input:
-    $Type: Microflow$Microflow
-    Name: MicroflowForLoop
-    MainFunction:
-      - Attributes:
-          $Type: Microflows$LoopedActivity
+    Name: ACT_ChangeInLoop
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
           ObjectCollection:
-            $Type: Microflows$MicroflowObjectCollection
             Objects:
               - $Type: Microflows$ActionActivity
                 Action:
                   $Type: Microflows$ChangeAction
                   Commit: "Yes"
-
-- name: do not allow loop with both commit and change actions
+- name: do not allow create with commit in loop
   allow: false
   input:
-    $Type: Microflow$Microflow
-    Name: MicroflowForLoop
-    MainFunction:
-      - Attributes:
-          $Type: Microflows$LoopedActivity
+    Name: ACT_CreateInLoop
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$LoopedActivity
           ObjectCollection:
-            $Type: Microflows$MicroflowObjectCollection
             Objects:
               - $Type: Microflows$ActionActivity
                 Action:
-                  $Type: Microflows$CommitAction
-              - $Type: Microflows$ActionActivity
-                Action:
-                  $Type: Microflows$ChangeAction
-                  Commit: "Yes"
+                  $Type: Microflows$CreateChangeAction
+                  Commit: YesWithoutEvents

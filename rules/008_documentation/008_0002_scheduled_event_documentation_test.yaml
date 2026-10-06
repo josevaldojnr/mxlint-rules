@@ -1,0 +1,11 @@
+TestCases:
+- name: allow documented scheduled event
+  allow: true
+  input:
+    Name: SCE_CleanupSessions
+    Documentation: Removes expired sessions every night at 01:15.
+- name: do not allow empty documentation
+  allow: false
+  input:
+    Name: SCE_CleanupSessions
+    Documentation: ""

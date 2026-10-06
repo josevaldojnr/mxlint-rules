@@ -1,0 +1,21 @@
+TestCases:
+- name: allow sensitive constant with empty default
+  allow: true
+  input:
+    Name: ApiKey
+    DefaultValue: ""
+- name: allow non-sensitive constant with default
+  allow: true
+  input:
+    Name: PageSize
+    DefaultValue: "20"
+- name: do not allow secret with default value
+  allow: false
+  input:
+    Name: CONST_Smtp_Password
+    DefaultValue: "hunter2"
+- name: do not allow encryption key with default value
+  allow: false
+  input:
+    Name: EncryptionKey
+    DefaultValue: "0123456789abcdef0123456789abcdef"

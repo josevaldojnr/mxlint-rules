@@ -1,0 +1,75 @@
+TestCases:
+- name: allow retrieve of a single object
+  allow: true
+  input:
+    Name: DS_FindCustomer
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RetrieveAction
+            RetrieveSource:
+              $Type: Microflows$DatabaseRetrieveSource
+              Entity: MyFirstModule.Customer
+              Range:
+                $Type: Microflows$ConstantRange
+                SingleObject: true
+              XpathConstraint: ""
+- name: allow retrieve with xpath constraint
+  allow: true
+  input:
+    Name: DS_ActiveCustomers
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RetrieveAction
+            RetrieveSource:
+              $Type: Microflows$DatabaseRetrieveSource
+              Entity: MyFirstModule.Customer
+              Range:
+                $Type: Microflows$ConstantRange
+                SingleObject: false
+              XpathConstraint: "[Active = true]"
+- name: allow retrieve with custom range
+  allow: true
+  input:
+    Name: DS_Batch
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RetrieveAction
+            RetrieveSource:
+              $Type: Microflows$DatabaseRetrieveSource
+              Entity: MyFirstModule.Customer
+              Range:
+                $Type: Microflows$CustomRange
+              XpathConstraint: ""
+- name: allow retrieve by association
+  allow: true
+  input:
+    Name: DS_ByAssociation
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RetrieveAction
+            RetrieveSource:
+              $Type: Microflows$AssociationRetrieveSource
+- name: do not allow retrieve all without constraint
+  allow: false
+  input:
+    Name: DS_AllCustomers
+    ObjectCollection:
+      Objects:
+        - $Type: Microflows$ActionActivity
+          Action:
+            $Type: Microflows$RetrieveAction
+            RetrieveSource:
+              $Type: Microflows$DatabaseRetrieveSource
+              Entity: MyFirstModule.Customer
+              Range:
+                $Type: Microflows$ConstantRange
+                SingleObject: false
+              XpathConstraint: ""

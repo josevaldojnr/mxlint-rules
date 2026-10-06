@@ -1,0 +1,13 @@
+TestCases:
+- name: allow SCE_ prefixed name
+  allow: true
+  input:
+    Name: SCE_CleanupExpiredSessions
+- name: do not allow missing prefix
+  allow: false
+  input:
+    Name: CleanupExpiredSessions
+- name: do not allow lowercase after prefix
+  allow: false
+  input:
+    Name: SCE_cleanup

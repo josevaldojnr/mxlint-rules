@@ -1,0 +1,21 @@
+TestCases:
+- name: allow plain PascalCase page
+  allow: true
+  input:
+    Name: CustomerDetails
+- name: allow recognized suffix with correct casing
+  allow: true
+  input:
+    Name: Customer_Overview
+- name: do not allow lowercase start
+  allow: false
+  input:
+    Name: customerDetails
+- name: do not allow incorrectly cased suffix
+  allow: false
+  input:
+    Name: Customer_overview
+- name: do not allow unrecognized suffix
+  allow: false
+  input:
+    Name: Customer_Random
